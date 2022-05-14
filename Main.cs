@@ -21,14 +21,14 @@ namespace RarityLib
     {
         private const string ModId = "root.rarity.lib";
         private const string ModName = "Rarity Extention Library";
-        public const string Version = "1.0.2";
+        public const string Version = "1.0.3";
         internal static bool deckCustomization;
         void Awake()
         {
             var harmony = new Harmony(ModId);
             harmony.PatchAll();
             var plugins = (List<BaseUnityPlugin>)typeof(BepInEx.Bootstrap.Chainloader).GetField("_plugins", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
-            deckCustomization = false;// plugins.Exists(plugin => plugin.Info.Metadata.GUID == "pykess.rounds.plugins.deckcustomization");
+            deckCustomization = plugins.Exists(plugin => plugin.Info.Metadata.GUID == "pykess.rounds.plugins.deckcustomization");
             RarityUtils.AddRarity("Common", 1, new Color(0.0978f, 0.1088f, 0.1321f), new Color(0.0978f, 0.1088f, 0.1321f));
             RarityUtils.AddRarity("Unommon", 0.4f, new Color(0.1745f, 0.6782f, 1f), new Color(0.1934f, 0.3915f, 0.5189f));
             RarityUtils.AddRarity("Rare", 0.1f, new Color(1f, 0.1765f, 0.7567f), new Color(0.5283f, 0.1969f, 0.4321f));
