@@ -14,7 +14,7 @@ namespace RarityLib.Utils
             int i = rarities.Count;
             if (rarities.Values.Any(r => r.name == name))
                 throw new ArgumentException($"Rarity with name {name} already exists");
-            rarities.Add(i, new Rarity(name, relativeRarity, color, colorOff));
+            rarities.Add(i, new Rarity(name, relativeRarity, color, colorOff, (CardInfo.Rarity)i));
             if (Main.deckCustomization && i > 2) DeckCustomizationCompat.RegesterRarity(rarities[i], i);
             return i;
         }
@@ -25,6 +25,11 @@ namespace RarityLib.Utils
             if(rarity == null) return (CardInfo.Rarity)0;
             return (CardInfo.Rarity)rarities.Keys.ToList().Find(i => rarities[i] == rarity);
         }
+
+        public static Rarity GetRarityData(CardInfo.Rarity rarity)
+        {
+            return rarities[(int)rarity];
+        }
     }
 
     public class Rarity
@@ -33,13 +38,15 @@ namespace RarityLib.Utils
         public float relativeRarity;
         public Color color;
         public Color colorOff;
+        public CardInfo.Rarity value;
 
-        public Rarity(string name, float relativeRarity, Color color, Color colorOff)
+        internal Rarity(string name, float relativeRarity, Color color, Color colorOff, CardInfo.Rarity value)
         {
             this.name = name;
             this.relativeRarity = relativeRarity;
             this.color = color;
             this.colorOff = colorOff;
+            this.value = value;
         }
         public override bool Equals(object obj)
         {

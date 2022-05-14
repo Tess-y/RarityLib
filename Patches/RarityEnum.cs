@@ -14,7 +14,7 @@ namespace ClassesManagerReborn.Patchs
         {
             if(enumType == typeof(CardInfo.Rarity))
             {
-                __result = RarityLib.Utils.RarityUtils.rarities.Values.Select(r => r.relativeRarity).ToArray();
+                __result = RarityLib.Utils.RarityUtils.rarities.Keys.ToArray();
             }
         }
     }

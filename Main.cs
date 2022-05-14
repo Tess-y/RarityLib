@@ -21,7 +21,7 @@ namespace RarityLib
     {
         private const string ModId = "root.rarity.lib";
         private const string ModName = "Rarity Extention Library";
-        public const string Version = "1.0.3";
+        public const string Version = "1.0.4";
         internal static bool deckCustomization;
         void Awake()
         {
