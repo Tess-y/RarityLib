@@ -9,12 +9,12 @@ namespace RarityLib.Utils
     public class RarityUtils
     {
         internal static Dictionary<int, Rarity> rarities = new Dictionary<int, Rarity>();
-        public static int AddRarity(string name, float relitiveRarity, Color color, Color colorOff)
+        public static int AddRarity(string name, float relativeRarity, Color color, Color colorOff)
         {
             int i = rarities.Count;
             if (rarities.Values.Any(r => r.name == name))
                 throw new ArgumentException($"Rarity with name {name} already exists");
-            rarities.Add(i, new Rarity(name, relitiveRarity, color, colorOff));
+            rarities.Add(i, new Rarity(name, relativeRarity, color, colorOff));
             if (Main.deckCustomization && i > 2) DeckCustomizationCompat.RegesterRarity(rarities[i], i);
             return i;
         }
@@ -30,14 +30,14 @@ namespace RarityLib.Utils
     public class Rarity
     {
         public string name;
-        public float relitiveRarity;
+        public float relativeRarity;
         public Color color;
         public Color colorOff;
 
-        public Rarity(string name, float relitiveRarity, Color color, Color colorOff)
+        public Rarity(string name, float relativeRarity, Color color, Color colorOff)
         {
             this.name = name;
-            this.relitiveRarity = relitiveRarity;
+            this.relativeRarity = relativeRarity;
             this.color = color;
             this.colorOff = colorOff;
         }

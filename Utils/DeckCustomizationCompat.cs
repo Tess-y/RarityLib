@@ -12,7 +12,7 @@ namespace RarityLib.Utils
 		public static void RegesterRarity(Rarity rarity, int i)
         {
 			Type deckCust = GetType("DeckCustomization");
-			((Dictionary<CardInfo.Rarity, float>)deckCust.GetField("RarityRarities", BindingFlags.Static|BindingFlags.NonPublic).GetValue(null))[(CardInfo.Rarity)i] = rarity.relitiveRarity;
+			((Dictionary<CardInfo.Rarity, float>)deckCust.GetField("RarityRarities", BindingFlags.Static|BindingFlags.NonPublic).GetValue(null))[(CardInfo.Rarity)i] = rarity.relativeRarity;
 
 		}
 		internal static Type GetType(string typeName)
