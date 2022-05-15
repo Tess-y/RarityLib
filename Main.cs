@@ -20,7 +20,7 @@ namespace RarityLib
     {
         private const string ModId = "root.rarity.lib";
         private const string ModName = "Rarity Extention Library";
-        public const string Version = "1.0.5";
+        public const string Version = "1.0.6";
         void Awake()
         {
             var harmony = new Harmony(ModId);

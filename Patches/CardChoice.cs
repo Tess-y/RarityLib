@@ -29,13 +29,7 @@ namespace RarityLib.Patches
 					break;
 				}
 			}
-
-            UnityEngine.Debug.Log(__result.name);
             return false;
-        }
-        public static void Postfix(GameObject __result)
-        {
-            UnityEngine.Debug.Log(__result.name);
         }
     }
 }
