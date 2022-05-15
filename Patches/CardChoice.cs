@@ -10,9 +10,9 @@ namespace RarityLib.Patches
     [HarmonyPatch(typeof(CardChoice), "GetRanomCard")]
     internal class CardChoicePatchGetRanomCard
     {
+        [HarmonyPriority(Priority.First)]
         private static bool Prefix(CardChoice __instance, ref GameObject __result)
         {
-            if (Main.deckCustomization) return true;
             float num = 0f;
             for (int i = 0; i < __instance.cards.Length; i++)
             {
@@ -29,7 +29,13 @@ namespace RarityLib.Patches
 					break;
 				}
 			}
-			return false;
+
+            UnityEngine.Debug.Log(__result.name);
+            return false;
+        }
+        public static void Postfix(GameObject __result)
+        {
+            UnityEngine.Debug.Log(__result.name);
         }
     }
 }

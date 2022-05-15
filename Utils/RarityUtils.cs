@@ -15,7 +15,6 @@ namespace RarityLib.Utils
             if (rarities.Values.Any(r => r.name == name))
                 throw new ArgumentException($"Rarity with name {name} already exists");
             rarities.Add(i, new Rarity(name, relativeRarity, color, colorOff, (CardInfo.Rarity)i));
-            if (Main.deckCustomization && i > 2) DeckCustomizationCompat.RegesterRarity(rarities[i], i);
             return i;
         }
 
