@@ -9,11 +9,15 @@ namespace RarityLib.Utils
     public class RarityUtils
     {
         internal static Dictionary<int, Rarity> rarities = new Dictionary<int, Rarity>();
+        public static IReadOnlyDictionary<int, Rarity> Rarities { get { return rarities; } }
         public static int AddRarity(string name, float relativeRarity, Color color, Color colorOff)
         {
             int i = rarities.Count;
             if (rarities.Values.Any(r => r.name == name))
-                throw new ArgumentException($"Rarity with name {name} already exists");
+            {
+                UnityEngine.Debug.LogWarning($"Rarity with name {name} already exists");
+                return rarities.Keys.Where(i => rarities[i].name == name).First();
+            }
             rarities.Add(i, new Rarity(name, relativeRarity, color, colorOff, (CardInfo.Rarity)i));
             return i;
         }
