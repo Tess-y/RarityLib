@@ -20,13 +20,13 @@ namespace RarityLib
     {
         private const string ModId = "root.rarity.lib";
         private const string ModName = "Rarity Extention Library";
-        public const string Version = "1.0.7";
+        public const string Version = "1.0.8";
         void Awake()
         {
             var harmony = new Harmony(ModId);
             harmony.PatchAll();
             RarityUtils.AddRarity("Common", 1, new Color(0.0978f, 0.1088f, 0.1321f), new Color(0.0978f, 0.1088f, 0.1321f));
-            RarityUtils.AddRarity("Unommon", 0.4f, new Color(0.1745f, 0.6782f, 1f), new Color(0.1934f, 0.3915f, 0.5189f));
+            RarityUtils.AddRarity("Uncommon", 0.4f, new Color(0.1745f, 0.6782f, 1f), new Color(0.1934f, 0.3915f, 0.5189f));
             RarityUtils.AddRarity("Rare", 0.1f, new Color(1f, 0.1765f, 0.7567f), new Color(0.5283f, 0.1969f, 0.4321f));
             RarityUtils.AddRarity("Legendary", 0.025f, new Color(1, 1, 0), new Color(0.7f, 0.7f, 0));
         }
