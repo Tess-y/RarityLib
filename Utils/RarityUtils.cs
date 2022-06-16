@@ -39,6 +39,7 @@ namespace RarityLib.Utils
     {
         public string name;
         public float relativeRarity;
+        public float calculatedRarity;
         public Color color;
         public Color colorOff;
         public CardInfo.Rarity value;
@@ -47,6 +48,7 @@ namespace RarityLib.Utils
         {
             this.name = name;
             this.relativeRarity = relativeRarity;
+            this.calculatedRarity = relativeRarity;
             this.color = color;
             this.colorOff = colorOff;
             this.value = value;

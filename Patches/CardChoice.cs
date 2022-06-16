@@ -16,13 +16,13 @@ namespace RarityLib.Patches
             float num = 0f;
             for (int i = 0; i < __instance.cards.Length; i++)
             {
-                num += RarityLib.Utils.RarityUtils.rarities[(int)__instance.cards[i].rarity].relativeRarity;
+                num += RarityLib.Utils.RarityUtils.rarities[(int)__instance.cards[i].rarity].calculatedRarity;
             }
             float num2 = UnityEngine.Random.Range(0f, num);
 
 			for (int j = 0; j < __instance.cards.Length; j++)
             {
-                num2 -= RarityLib.Utils.RarityUtils.rarities[(int)__instance.cards[j].rarity].relativeRarity;
+                num2 -= RarityLib.Utils.RarityUtils.rarities[(int)__instance.cards[j].rarity].calculatedRarity;
                 if (num2 <= 0f)
 				{
                     __result = __instance.cards[j].gameObject;
