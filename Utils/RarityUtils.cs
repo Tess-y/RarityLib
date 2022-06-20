@@ -9,6 +9,7 @@ namespace RarityLib.Utils
     public class RarityUtils
     {
         internal static Dictionary<int, Rarity> rarities = new Dictionary<int, Rarity>();
+        internal static Dictionary<CardInfo, float> CardRarities = new Dictionary<CardInfo, float>();
         public static IReadOnlyDictionary<int, Rarity> Rarities { get { return rarities; } }
         public static int AddRarity(string name, float relativeRarity, Color color, Color colorOff)
         {
@@ -33,6 +34,20 @@ namespace RarityLib.Utils
         {
             return rarities[(int)rarity];
         }
+
+        public static float GetCardRarityModifier(CardInfo card)
+        {
+            if (!CardRarities.ContainsKey(card))
+            {
+                CardRarities[card] = 1;
+            }
+            return CardRarities[card];
+        }
+        public static void SetCardRarityModifier(CardInfo card, float modifier)
+        {
+                CardRarities[card] = modifier;
+        }
+
     }
 
     public class Rarity
