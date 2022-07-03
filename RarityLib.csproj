@@ -22,7 +22,7 @@
       <HintPath>C:\Users\Tess\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ROUNDS\profiles\Simple_Gamemodes\BepInEx\plugins\willis81808-MMHook\MMHOOK_Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="ModdingUtils">
-      <HintPath>C:\Users\Tess\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ROUNDS\profiles\Simple_Gamemodes\BepInEx\plugins\Pykess-ModdingUtils\ModdingUtils.dll</HintPath>
+      <HintPath>C:\Users\Tess\test\ModdingUtils\ModdingUtils\bin\Debug\netstandard2.1\ModdingUtils.dll</HintPath>
     </Reference>
     <Reference Include="UnboundLib">
       <HintPath>C:\Users\Tess\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ROUNDS\profiles\Simple_Gamemodes\BepInEx\plugins\willis81808-UnboundLib\UnboundLib.dll</HintPath>

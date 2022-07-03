@@ -8,7 +8,7 @@ using RarityLib.Utils;
 namespace RarityLib.Patches
 {
     [Serializable]
-    [HarmonyPatch(typeof(CardChoice), "GetRanomCard")]
+    [HarmonyPatch(typeof(ModdingUtils.Patches.CardChoicePatchGetRanomCard), "OrignialGetRanomCard", new Type[] { typeof(CardInfo[]) })]
     internal class CardChoicePatchGetRanomCard
     {
         [HarmonyPriority(Priority.First)]

@@ -4,6 +4,7 @@ using RarityLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnboundLib.GameModes;
 using UnityEngine;
 
 namespace RarityLib
@@ -20,7 +21,7 @@ namespace RarityLib
     {
         private const string ModId = "root.rarity.lib";
         private const string ModName = "Rarity Extention Library";
-        public const string Version = "1.1.1";
+        public const string Version = "1.1.2";
         void Awake()
         {
             var harmony = new Harmony(ModId);
@@ -34,6 +35,7 @@ namespace RarityLib
         void Start()
         {
             //UnboundLib.Cards.CustomCard.BuildCard<testcard>();
+            GameModeManager.AddHook(GameModeHooks.HookGameStart, gm => RarityUtils.Reset(), GameModeHooks.Priority.First);
         }
     }
 

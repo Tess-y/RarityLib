@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,6 +47,12 @@ namespace RarityLib.Utils
         public static void SetCardRarityModifier(CardInfo card, float modifier)
         {
                 CardRarities[card] = modifier;
+        }
+
+        internal static IEnumerator Reset()
+        {
+            CardRarities.Clear();
+            yield break;
         }
 
     }
