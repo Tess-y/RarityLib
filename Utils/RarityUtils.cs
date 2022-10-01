@@ -11,6 +11,8 @@ namespace RarityLib.Utils
     {
         internal static Dictionary<int, Rarity> rarities = new Dictionary<int, Rarity>();
         internal static Dictionary<CardInfo, float> CardRarities = new Dictionary<CardInfo, float>();
+        internal static Dictionary<CardInfo, float> CardRaritiesAdd = new Dictionary<CardInfo, float>();
+        internal static Dictionary<CardInfo, float> CardRaritiesMul = new Dictionary<CardInfo, float>();
         public static IReadOnlyDictionary<int, Rarity> Rarities { get { return rarities; } }
         public static int AddRarity(string name, float relativeRarity, Color color, Color colorOff)
         {
@@ -38,15 +40,21 @@ namespace RarityLib.Utils
 
         public static float GetCardRarityModifier(CardInfo card)
         {
-            if (!CardRarities.ContainsKey(card))
-            {
-                CardRarities[card] = 1;
-            }
-            return CardRarities[card];
+            if (!CardRarities.ContainsKey(card)) CardRarities[card] = 1;
+            if (!CardRaritiesAdd.ContainsKey(card)) CardRaritiesAdd[card] = 0;
+            if (!CardRaritiesMul.ContainsKey(card)) CardRaritiesMul[card] = 1;
+            return (CardRarities[card] + CardRaritiesAdd[card]) * CardRaritiesMul[card];
         }
         public static void SetCardRarityModifier(CardInfo card, float modifier)
         {
                 CardRarities[card] = modifier;
+        }
+        public static void AjustCardRarityModifier(CardInfo card, float add = 0, float mul = 0)
+        {
+            if (!CardRaritiesAdd.ContainsKey(card)) CardRaritiesAdd[card] = 0;
+            if (!CardRaritiesMul.ContainsKey(card)) CardRaritiesMul[card] = 1;
+            CardRaritiesAdd[card] += add;
+            CardRaritiesMul[card] += mul;
         }
 
         internal static IEnumerator Reset()
