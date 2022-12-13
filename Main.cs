@@ -4,6 +4,7 @@ using RarityLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnboundLib;
 using UnboundLib.GameModes;
 using UnityEngine;
 
@@ -38,6 +39,14 @@ namespace RarityLib
             RarityUtils.Finalized = false;
             //UnboundLib.Cards.CustomCard.BuildCard<testcard>();
             GameModeManager.AddHook(GameModeHooks.HookGameStart, gm => RarityUtils.Reset(), GameModeHooks.Priority.First);
+            Unbound.Instance.ExecuteAfterFrames(1, () =>
+            {
+                var allObjects = (RarityAdder[])Resources.FindObjectsOfTypeAll(typeof(RarityAdder));
+                foreach (var o in allObjects)
+                {
+                    o.SetUp();
+                }
+            });
         }
     }
 

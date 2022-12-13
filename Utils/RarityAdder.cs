@@ -12,7 +12,7 @@ namespace RarityLib.Utils
     {
         public string rarityName = "Common";
 
-        void Start()
+        internal void SetUp()
         {
             GetComponent<CardInfo>().rarity = RarityUtils.GetRarity(rarityName);
         }
