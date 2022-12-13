@@ -39,14 +39,11 @@ namespace RarityLib
             RarityUtils.Finalized = false;
             //UnboundLib.Cards.CustomCard.BuildCard<testcard>();
             GameModeManager.AddHook(GameModeHooks.HookGameStart, gm => RarityUtils.Reset(), GameModeHooks.Priority.First);
-            Unbound.Instance.ExecuteAfterFrames(1, () =>
+            var allObjects = (RarityAdder[])Resources.FindObjectsOfTypeAll(typeof(RarityAdder));
+            foreach (var o in allObjects)
             {
-                var allObjects = (RarityAdder[])Resources.FindObjectsOfTypeAll(typeof(RarityAdder));
-                foreach (var o in allObjects)
-                {
-                    o.SetUp();
-                }
-            });
+                o.SetUp();
+            }
         }
     }
 
