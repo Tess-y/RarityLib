@@ -14,14 +14,26 @@ namespace RarityLib.Utils
         internal static Dictionary<CardInfo, float> CardRaritiesAdd = new Dictionary<CardInfo, float>();
         internal static Dictionary<CardInfo, float> CardRaritiesMul = new Dictionary<CardInfo, float>();
         public static IReadOnlyDictionary<int, Rarity> Rarities { get { return rarities; } }
+        internal static bool Finalized = false;
+        internal static bool Started = false;
         public static int AddRarity(string name, float relativeRarity, Color color, Color colorOff)
         {
+            if (!Started)
+            {
+                throw new RarityException("The rarity regestry hasnt been set up yet. \n Are you depending on raritylib?");
+            }
+            if (Finalized)
+            {
+                throw new RarityException("Raritys can no longer be regestered. \n Is this being called in the mods awake function?");
+            }
             int i = rarities.Count;
             if (rarities.Values.Any(r => r.name == name))
             {
                 UnityEngine.Debug.LogWarning($"Rarity with name {name} already exists");
-                return rarities.Keys.Where(i => rarities[i].name == name).First();
+                return rarities.Keys.Where(j => rarities[j].name == name).First();
             }
+            if (relativeRarity <= 0)
+                throw new RarityException("The relative rarity of a rarity must be grater than 0");
             rarities.Add(i, new Rarity(name, relativeRarity, color, colorOff, (CardInfo.Rarity)i));
             return i;
         }
@@ -90,6 +102,12 @@ namespace RarityLib.Utils
                 return ((Rarity)obj).name == this.name;
             }
             return false;
+        }
+    }
+
+    internal class RarityException : Exception { 
+       public RarityException(string message) : base(message)
+        {
         }
     }
 }

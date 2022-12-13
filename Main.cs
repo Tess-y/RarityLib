@@ -21,11 +21,12 @@ namespace RarityLib
     {
         private const string ModId = "root.rarity.lib";
         private const string ModName = "Rarity Extention Library";
-        public const string Version = "1.1.4";
+        public const string Version = "1.2.0";
         void Awake()
         {
             var harmony = new Harmony(ModId);
             harmony.PatchAll();
+            RarityUtils.Started = true;
             RarityUtils.AddRarity("Common", 1, new Color(0.0978f, 0.1088f, 0.1321f), new Color(0.0978f, 0.1088f, 0.1321f));
             RarityUtils.AddRarity("Uncommon", 0.4f, new Color(0.1745f, 0.6782f, 1f), new Color(0.1934f, 0.3915f, 0.5189f));
             RarityUtils.AddRarity("Rare", 0.1f, new Color(1f, 0.1765f, 0.7567f), new Color(0.5283f, 0.1969f, 0.4321f));
@@ -34,6 +35,7 @@ namespace RarityLib
 
         void Start()
         {
+            RarityUtils.Finalized = false;
             //UnboundLib.Cards.CustomCard.BuildCard<testcard>();
             GameModeManager.AddHook(GameModeHooks.HookGameStart, gm => RarityUtils.Reset(), GameModeHooks.Priority.First);
         }
