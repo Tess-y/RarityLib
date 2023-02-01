@@ -57,12 +57,18 @@ namespace RarityLib.Utils
             if (!CardRaritiesMul.ContainsKey(card)) CardRaritiesMul[card] = 1;
             return (CardRarities[card] + CardRaritiesAdd[card]) * CardRaritiesMul[card];
         }
+        public static float GetCardBaseRarityModifier(CardInfo card){
+            if (!CardRarities.ContainsKey(card)) CardRarities[card] = 1;
+            return CardRarities[card];
+        }
         public static void SetCardRarityModifier(CardInfo card, float modifier)
         {
-                CardRarities[card] = modifier;
+            UnityEngine.Debug.Log($"Card {card.name}'s base rarity modifier set to {modifier}");
+            CardRarities[card] = modifier;
         }
         public static void AjustCardRarityModifier(CardInfo card, float add = 0, float mul = 0)
         {
+            UnityEngine.Debug.Log($"Card {card.name}'s rarity modifier ajusted by +{add} and *{mul}");
             if (!CardRaritiesAdd.ContainsKey(card)) CardRaritiesAdd[card] = 0;
             if (!CardRaritiesMul.ContainsKey(card)) CardRaritiesMul[card] = 1;
             CardRaritiesAdd[card] += add;
