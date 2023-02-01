@@ -72,6 +72,9 @@ namespace RarityLib.Utils
         internal static IEnumerator Reset()
         {
             CardRarities.Clear();
+            CardRaritiesAdd.Clear();
+            CardRaritiesMul.Clear();
+            rarities.Values.ToList().ForEach(r=> r.calculatedRarity = r.relativeRarity);
             yield break;
         }
 
