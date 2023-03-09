@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ClassesManagerReborn.Patchs
+namespace RarityLib.Patchs
 {
     [Serializable]
     [HarmonyPatch(typeof(Enum), "GetValues")]
@@ -14,7 +14,7 @@ namespace ClassesManagerReborn.Patchs
         {
             if(enumType == typeof(CardInfo.Rarity))
             {
-                __result = RarityLib.Utils.RarityUtils.rarities.Keys.ToArray();
+                __result = RarityLib.Utils.RarityUtils.rarities.Values.Select(r=>r.value).ToArray();
             }
         }
     }

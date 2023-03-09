@@ -22,7 +22,7 @@ namespace RarityLib
     {
         private const string ModId = "root.rarity.lib";
         private const string ModName = "Rarity Extention Library";
-        public const string Version = "1.2.1";
+        public const string Version = "1.2.3";
         void Awake()
         {
             var harmony = new Harmony(ModId);
@@ -42,7 +42,8 @@ namespace RarityLib
             var allObjects = (RarityAdder[])Resources.FindObjectsOfTypeAll(typeof(RarityAdder));
             foreach (var o in allObjects)
             {
-                o.SetUp();
+                if (o.enabled)
+                    o.SetUp();
             }
         }
     }
