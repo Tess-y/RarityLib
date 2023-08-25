@@ -12,7 +12,7 @@ namespace RarityLib.Patches
         private static bool Prefix(bool isOn, CardRarityColor __instance)
         {
             CardInfo componentInParent = __instance.GetComponentInParent<CardInfo>();
-            __instance.GetComponent<Image>().color = (isOn ? RarityLib.Utils.RarityUtils.rarities[(int)componentInParent.rarity].color : RarityLib.Utils.RarityUtils.rarities[(int)componentInParent.rarity].colorOff);
+            __instance.GetComponent<Image>().color = (isOn ? Utils.RarityUtils.rarities[(int)componentInParent.rarity].color : Utils.RarityUtils.rarities[(int)componentInParent.rarity].colorOff);
             return false;
         }
     }

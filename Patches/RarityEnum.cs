@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RarityLib.Patchs
+namespace ClassesManagerReborn.Patchs
 {
     [Serializable]
     [HarmonyPatch(typeof(Enum), "GetValues")]
@@ -14,8 +14,30 @@ namespace RarityLib.Patchs
         {
             if(enumType == typeof(CardInfo.Rarity))
             {
-                __result = RarityLib.Utils.RarityUtils.rarities.Values.Select(r=>r.value).ToArray();
+                __result = RarityLib.Utils.RarityUtils.rarities.Values.Select(v => v.value).ToArray();
             }
+        }
+    }   
+    [Serializable]
+    [HarmonyPatch(typeof(Enum), "CompareTo")]
+    internal class RarityEnumCompair
+    {
+        private static bool Prefix(Enum __instance, object target, ref int __result)
+        {
+            if(__instance is CardInfo.Rarity rarity1 && target is CardInfo.Rarity rarity2)
+            {
+                float r1 = RarityLib.Utils.RarityUtils.GetRarityData(rarity1).relativeRarity;
+                float r2 = RarityLib.Utils.RarityUtils.GetRarityData(rarity2).relativeRarity;
+                if(r1 == r2) {
+                    __result = 0;
+                }else if(r1 > r2) {
+                    __result = -1;
+                }else { 
+                    __result = 1; 
+                }
+                return false;
+            }
+            return true;
         }
     }
     [Serializable]

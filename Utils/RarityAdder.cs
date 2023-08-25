@@ -8,13 +8,12 @@ namespace RarityLib.Utils
     /// <summary>
     /// Intended of use in making unity cards only.
     /// </summary>
-    public class RarityAdder : MonoBehaviour
+    internal class RarityAdder : MonoBehaviour
     {
         public string rarityName = "Common";
 
-        internal void SetUp()
-        {
-            GetComponent<CardInfo>().rarity = RarityUtils.GetRarity(rarityName);
+        internal void SetUp() {
+            base.GetComponent<CardInfo>().rarity = RarityUtils.GetRarity(rarityName);
         }
     }
 }
