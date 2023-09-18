@@ -21,11 +21,11 @@ namespace RarityLib.Utils
         {
             if (!Started)
             {
-                throw new RarityException("The rarity regestry hasnt been set up yet. \n Are you depending on raritylib?");
+                throw new RarityException("The rarity registry hasnt been set up yet. \n Are you depending on raritylib?");
             }
             if (Finalized)
             {
-                throw new RarityException("Raritys can no longer be regestered. \n Is this being called in the mods awake function?");
+                throw new RarityException("Rarities can no longer be registered. \n Is this being called in the mods awake function?");
             }
             int num = RarityList.Count + 3;
             int result;
@@ -34,7 +34,7 @@ namespace RarityLib.Utils
                 result = rarities.Keys.Where(j => rarities[j].name == name).First();
             } else {
                 if(relativeRarity <= 0)
-                    throw new RarityException("The relative rarity of a rarity must be grater than 0");
+                    throw new RarityException("The relative rarity of a rarity must be greater than 0.");
                 RarityList.Add(new Rarity(name, relativeRarity, color, colorOff, (CardInfo.Rarity)(-1)));
                 result = num;
             }
@@ -54,8 +54,11 @@ namespace RarityLib.Utils
 
         public static CardInfo.Rarity GetRarity(string rarityName)
         {
+            if(!Finalized)
+                throw new RarityException("Rarities cant be gotten before they have finished being registered. \n Are you waiting till at least the start function.");
+
             Rarity rarity = rarities.Values.ToList().Find(r => r.name == rarityName);
-            if(rarity == null) return (CardInfo.Rarity)0;
+            if(rarity == null) return CardInfo.Rarity.Common;
             return (CardInfo.Rarity)rarities.Keys.ToList().Find(i => rarities[i] == rarity);
         }
 
